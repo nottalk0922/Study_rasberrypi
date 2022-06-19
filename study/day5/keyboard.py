@@ -14,9 +14,9 @@ def main():
             if keyValue == ord('q'):
                     break
             elif keyValue == 82:
-                    print("up")
+                    print("go")
             elif keyValue == 84:
-                    print("down")
+                    print("stop")
             
             elif keyValue == 81:
                     print("left")
@@ -29,7 +29,9 @@ def main():
             
             height, _, _ = image.shape
             save_image = image[int(height/2):,:,:]
-            save_image = cv2.cvtColor(save_image,cv2.COLOR_RGB2BGR)
+            save_image = cv2.cvtColor(save_image,cv2.COLOR_BGR2YUV)
+            save_image = cv2.GaussianBlur(save_image, (3,3), 0)
+            save_image = cv2.resize(save_image, (200,66),0)
             cv2.imshow('Save', save_image)
             
         cv2.destroyAllWindows()
